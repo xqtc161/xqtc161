@@ -1,16 +1,25 @@
-### Hi there 👋
+---
+### Hi there, I'm Till - aka [xqtc] 👋 
 
-<!--
-**xqtc161/xqtc161** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-Here are some ideas to get you started:
+[![Twitter Follow](https://img.shields.io/twitter/follow/_xqtc?color=1DA1F2&logo=twitter&style=for-the-badge)](https://twitter.com/_xqtc)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+
+
+- 🌱 Still in school
+- 🥅 2022 Goals: Code my own AI
+- ⚡ Fun fact: Let's all love Lain
+
+### Connect with me:
+
+
+[<img align="left" alt="codeSTACKr | Twitter" width="22px" src="https://upload.wikimedia.org/wikipedia/de/9/9f/Twitter_bird_logo_2012.svg" />][twitter]
+[<img align="left" alt="codeSTACKr | Instagram" width="22px" src="https://upload.wikimedia.org/wikipedia/commons/2/27/CIS-A2K_Instagram_Icon_%28Black%29.svg" />][instagram]
+
+<br />
+
+
+---
+
+[twitter]: https://twitter.com/_xqtc
+[instagram]: https://instagram.com/l4in_iw4kura
