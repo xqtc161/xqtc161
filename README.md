@@ -7,7 +7,7 @@
 
 
 - 🌱 Still in school
-- 🥅 2022 Goals: Code my own AI
+- 🥅 2022 Goals: Learn C# adn C
 - ⚡ Fun fact: Let's all love Lain
 
 ### Connect with me:
