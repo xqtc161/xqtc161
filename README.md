@@ -8,7 +8,7 @@
 
 - 🌱 Still in school
 - 🥅 2022 Goals: Learn C# and C
-- ⚡ Fun fact: Let's all love Lain
+- ⚡ Website: xqtc161.github.io
 
 ### Connect with me:
 
