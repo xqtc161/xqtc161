@@ -16,6 +16,16 @@
 [<img align="left" alt="codeSTACKr | Twitter" width="22px" src="https://upload.wikimedia.org/wikipedia/de/9/9f/Twitter_bird_logo_2012.svg" />][twitter]
 [<img align="left" alt="codeSTACKr | Instagram" width="22px" src="https://upload.wikimedia.org/wikipedia/commons/2/27/CIS-A2K_Instagram_Icon_%28Black%29.svg" />][instagram]
 
+
+
+
+
+Lain GIF four you :)
+<div>
+
+
+<img src="./lain-1.gif" width="30%" height="30%"/>
+<div/>
 <br />
 
 
