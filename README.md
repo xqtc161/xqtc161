@@ -8,7 +8,7 @@
 
 - 🌱 Still in school
 - 🥅 2022 Goals: Learn C# and C
-- ⚡ Website: xqtc161.github.io
+- ⚡ Website: https://xqtc161.github.io
 
 ### Connect with me:
 
