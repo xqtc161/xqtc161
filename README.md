@@ -18,7 +18,11 @@
 
 Hi I'm Tila - aka xqtc - a full-time GNU/Linux user and weeb. I'm still attending High-School and teaching myself programming in Rust. I also like self-hosting services like my own E-Mail server, Plex Media Server and an Discord Bot.
 
-
+<p align="center">
+  <a href="https://ayo.so/xqtc">
+    <img src="https://skillicons.dev/icons?i=twitter,instagram" />
+  </a>
+</p>
 
 
 ---
