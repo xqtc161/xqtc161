@@ -29,7 +29,7 @@ Hi I'm Tila - aka xqtc - a full-time GNU/Linux user and weeb. I'm still attendin
 
 <h3>
   <p align="center">    
-    <img align="cemter" src="./1624150838230.jpg" width="60%" height="100%"/>
+    <img align="cemter" src="./1624150838230.jpg" width="100%" height="100%"/>
   </p>
 </h3>
 
