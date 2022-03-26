@@ -16,7 +16,7 @@
 
 ---
 
-Hi I'm Tila - aka xqtc - a full-time GNU/Linux user and weeb. I'm still attending High-School and teaching myself programming. I use Rust, Java, HTML and JS. I also like self-hosting services like my own E-Mail server, Plex Media Server and an Discord Bot.
+Hi I'm Tila - aka xqtc - a full-time GNU/Linux user and weeb. I'm still attending High-School and teaching myself programming in Rust. I also like self-hosting services like my own E-Mail server, Plex Media Server and an Discord Bot.
 
 
 
