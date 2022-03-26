@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=rust,bash,git,md,linux,vim" />
+    <img src="https://skillicons.dev/icons?i=rust,bash,git,md,linux,vim" width="55%" height="55%"/>
   </a>
 </p>
 
@@ -20,7 +20,7 @@ Hi I'm Tila - aka xqtc - a full-time GNU/Linux user and weeb. I'm still attendin
 
 <p align="center">
   <a href="https://ayo.so/xqtc">
-    <img src="https://skillicons.dev/icons?i=twitter,instagram" />
+    <img src="https://skillicons.dev/icons?i=twitter,instagram" width="15%" height="15%"/>
   </a>
 </p>
 
