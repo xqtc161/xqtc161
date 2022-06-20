@@ -31,6 +31,10 @@ Hi I'm Tila - aka xqtc - a full-time GNU/Linux user and weeb. I'm still attendin
     <img src="https://skillicons.dev/icons?i=twitter,instagram" width="15%" height="15%"/>
   </a>
 </p>
+<p align=center>
+Visit Since 20/6/2022<br/>
+  <a href="https://count.getloli.com/"><img src="https://count.getloli.com/get/@xqtc-readme?theme=rule34"/></a><br/>
+</p>
 
 
 ---
