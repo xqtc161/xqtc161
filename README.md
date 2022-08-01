@@ -1,5 +1,5 @@
 <h1 align="center">
-  🏳️‍⚧️ xqtc | Tila 🏳️‍⚧️
+  🎏xqtc🎏
 </h1>
 
 <h2>
@@ -22,15 +22,8 @@
   </a>
 </p>
 
-Hi I'm Tila - aka xqtc - a full-time GNU/Linux user and weeb. I'm still attending High-School and teaching myself programming in Rust. I also like self-hosting services like my own E-Mail server, Website, Plex Media Server and an Discord Bot.
+Hi I'm xqtc, a full-time GNU/Linux user and weeb. I'm currently in job training as a programmer. I also like self-hosting services like my own E-Mail server, Website, Plex Media Server and an Discord Bot.
 
-
-
-<p align="center">
-  <a href="https://ayo.so/xqtc">
-    <img src="https://skillicons.dev/icons?i=twitter,instagram" width="15%" height="15%"/>
-  </a>
-</p>
 
 <p align=center>
 Visits Since 20/6/2022<br/>
@@ -48,5 +41,3 @@ Visits Since 20/6/2022<br/>
 
 
 
-[twitter]: https://twitter.com/_xqtc
-[instagram]: https://instagram.com/l4in_iw4kura
