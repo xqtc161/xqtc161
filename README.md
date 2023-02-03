@@ -1,5 +1,5 @@
 <h1 align="center">
-  🎏xqtc🎏
+  🎏xqtc | Tila🎏
 </h1>
 
 <h2>
@@ -23,7 +23,7 @@
   </a>
 </p>
 
-Hi I'm xqtc, a full-time GNU/Linux user and weeb. I'm currently in job training as a programmer. I also like self-hosting services like my own E-Mail server, Website, Plex Media Server and an Discord Bot.
+Hi, I'm Tila/xqtc a german based trans*-girl and (hardware-)hacker/reverse-engineer. I like watching anime , hacking and coding in general.
 
 
 <p align=center>
