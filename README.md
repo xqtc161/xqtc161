@@ -1,5 +1,5 @@
 <h1 align="center">
-  🎏xqtc | Tila🎏
+  &#x26E7xqtc | Tila&#x26E7
 </h1>
 
 <h2>
@@ -36,7 +36,7 @@ Visits Since 20/6/2022<br/>
 
 <h3>
   <p align="center">    
-    <img align="cemter" src="./1624150838230.jpg" width="100%" height="100%"/>
+    <img align="cemter" src="./20221203_235406.jpg" width="100%" height="100%"/>
   </p>
 </h3>
 
