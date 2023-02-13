@@ -23,7 +23,7 @@
   </a>
 </p>
 
-Hi, I'm Tila/xqtc a german based trans*-girl and (hardware-)hacker/reverse-engineer. I like watching anime , hacking and coding in general. <br/><p align="center"><b>I use arch btw</b></p>
+Hi, I'm Tila/xqtc a german based trans*-girl and (hardware-)hacker/reverse-engineer. I like watching anime, hacking and coding in general. <br/><p align="center"><b>I use arch btw</b></p>
 
 
 <p align=center>
