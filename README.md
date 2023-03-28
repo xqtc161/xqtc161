@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=rust,c,cs,md,python" width="55%" height="55%"/><br/>
+    <img src="https://skillicons.dev/icons?i=rust,c,julia,latex,python" width="55%" height="55%"/><br/>
     <img src="https://skillicons.dev/icons?i=git,bsd,linux,bash,vim" width="55%" height="55%"/>
   </a>
 </p>
