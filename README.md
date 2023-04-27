@@ -9,9 +9,10 @@
 </h2>
 
 <p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=xqtc161&show_icons=true&count_private=true&theme=tokyonight" /><br /><br />
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=rust,c,julia,latex,python" width="55%" height="55%"/><br/>
-    <img src="https://skillicons.dev/icons?i=git,bsd,linux,bash,vim" width="55%" height="55%"/>
+    <img src="https://skillicons.dev/icons?i=rust,c,julia,latex,python" width="40%" height="40%"/><br/>
+    <img src="https://skillicons.dev/icons?i=git,bsd,linux,bash,vim" width="40%" height="40%"/>
   </a>
 </p>
 
