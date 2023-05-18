@@ -16,15 +16,13 @@
   </a>
 </p>
 
----
+
 
 <p align="center">
   <a href="https://ayo.so/xqtc">
     <img src="https://discord.c99.nl/widget/theme-1/259688615246954497.png"/>
   </a>
 </p>
-
-Hi, I'm Tila/xqtc a german based trans*-girl and (hardware-)hacker/reverse-engineer. I like watching anime, hacking and coding in general. <br/><p align="center"><b>I use arch btw</b></p>
 
 
 <p align=center>
