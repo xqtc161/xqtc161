@@ -1,5 +1,5 @@
 <h1 align="center">
-  &#x26E7xqtc | Tila&#x26E7
+  &#x26E7xqtc&#x26E7
 </h1>
 
 <h2>
