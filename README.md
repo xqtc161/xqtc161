@@ -19,7 +19,7 @@
 
 
 <p align="center">
-  <a href="https://ayo.so/xqtc">
+  <a href="https://discord.com/users/259688615246954497">
     <img src="https://discord.c99.nl/widget/theme-1/259688615246954497.png"/>
   </a>
 </p>
