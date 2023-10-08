@@ -30,7 +30,7 @@ Visits Since 20/6/2022<br/>
   <a href="https://count.getloli.com/"><img src="https://count.getloli.com/get/@xqtc-readme?theme=rule34"/></a><br/>
 </p>
 
-
+<!--
 ---
 
 <h3>
@@ -38,6 +38,6 @@ Visits Since 20/6/2022<br/>
     <img align="cemter" src="./20221203_235406.jpg" width="100%" height="100%"/>
   </p>
 </h3>
-
+-->
 
 
