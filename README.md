@@ -9,7 +9,7 @@
 </h2>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=xqtc161&show_icons=true&count_private=true&theme=tokyonight" /><br /><br />
+  <!--img src="https://github-readme-stats.vercel.app/api?username=xqtc161&show_icons=true&count_private=true&theme=tokyonight" /--><br /><br />
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=rust,c,julia,nix" width="40%" height="40%"/><br/>
     <img src="https://skillicons.dev/icons?i=git,bsd,linux,neovim" width="40%" height="40%"/>
