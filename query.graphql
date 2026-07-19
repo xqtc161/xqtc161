@@ -1,0 +1,32 @@
+query($login: String!) {
+  user(login: $login) {
+    followers {totalCount}
+    contributionsCollection {
+      totalCommitContributions
+      totalPullRequestContributions
+      totalIssueContributions
+      restrictedContributionsCount
+    }
+    repositories (
+      first: 100
+      ownerAffiliations: OWNER
+      isFork false
+      oderBy: {field: PUSHED_AT, direction DESC }
+    ) {
+      totalCount
+      nodes {
+        nameWithOwner
+        stargazerCount
+        languages(first10, orderBy: { field: SIZE, direction: DESC }) {
+          edges { size node { name } }
+        }
+      }
+    }
+    repositoriesContributedTo(
+      first: 1
+      contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]
+    ) {
+      totalCount
+    }
+  }
+}

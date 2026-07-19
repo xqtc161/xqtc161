@@ -1,0 +1,17 @@
+.{
+    .name = .readmegen,
+    .version = "0.0.0",
+    .fingerprint = 0x8cb1e1ea51b066d0,
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{
+        .graphql = .{
+            .url = "git+https://git.sr.ht/~xqtc/graphql-zig?ref=trunk#9991c87ee64f5a1a434bcef76719e4c380b33598",
+            .hash = "graphql-0.1.0-Sr_BkGkQAACu9n8nRjPIQJ2JFI0t0ZauWoKMu2bW96xG",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
