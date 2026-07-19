@@ -44,6 +44,59 @@ fn strOf(v: ?std.json.Value) []const u8 {
     };
 }
 
+const ascii = @embedFile("ascii.txt");
+const tagline = "meow :3";
+const gif_path: ?[]const u8 = "./cat-kitten.gif";
+
+fn writeBar(w: *std.Io.Writer, percent: f64, width: usize) !void {
+    const partials = [_][]const u8{ "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
+    const scaled = percent / 100.0 * @as(f64, @floatFromInt(width * 8));
+    const eights: usize = @intFromFloat(@round(@max(scaled, 0)));
+    const full = eights / 8;
+    const rem = eights % 8;
+    for (0..width) |i| {
+        if (i < full) {
+            try w.writeAll("█");
+        } else if (i == full and rem > 0) {
+            try w.writeAll(partials[rem - 1]);
+        } else {
+            try w.writeByte(' ');
+        }
+    }
+}
+
+fn render(
+    w: *std.Io.Writer,
+    user: []const u8,
+    stats: Stats,
+    langs: []const Lang,
+    activity: []const []const u8,
+) !void {
+    try w.print("```\n{s}\n\n{s}\n\n\n", .{ ascii, tagline });
+
+    try w.print("@{s}\n\n", .{user});
+    try w.print("{d} followers {d} stars\n\n", .{ stats.followers, stats.stars });
+
+    if (langs.len > 0) {
+        for (langs) |l| {
+            try w.print("{s:<12} ", .{l.name});
+            try writeBar(w, l.percent, 12);
+            try w.print("  {d:>5.1}%\n", .{l.percent});
+        }
+        try w.writeAll("\n\n");
+    }
+
+    if (activity.len > 0) {
+        try w.writeAll("recent activity\n\n");
+        for (activity) |a| try w.print("{s}\n", .{a});
+        try w.writeByte('\n');
+    }
+
+    try w.print("commits {d}  issues {d}  pull requests {d}  repos {d} contrib {d}\n", .{ stats.commits, stats.issues, stats.prs, stats.repos, stats.contributed });
+    try w.print("```\n", .{});
+    if (gif_path) |p| try w.print("\n![]({s})\n", .{p});
+}
+
 pub fn main(init: std.process.Init) !void {
     const gpa = init.gpa;
     const io = init.io;
@@ -134,15 +187,12 @@ pub fn main(init: std.process.Init) !void {
 
     const top = langs.items[0..@min(6, langs.items.len)];
 
-    var buf: [4096]u8 = undefined;
-    var out = std.Io.File.stdout().writer(io, &buf);
-    const w = &out.interface;
-    try w.print("@{s}\n", .{user});
-    try w.print(
-        "followers {d}  stars {d}  commits {d}  prs {d}  issues {d}  repos {d}  contributed {d}\n",
-        .{ stats.followers, stats.stars, stats.commits, stats.prs, stats.issues, stats.repos, stats.contributed },
-    );
-    for (top) |l| try w.print("  {s:<12} {d:.1}%\n", .{ l.name, l.percent });
-    for (activity.items) |a| try w.print("  {s}\n", .{a});
-    try w.flush();
+    var doc: std.Io.Writer.Allocating = .init(gpa);
+    defer doc.deinit();
+    try render(&doc.writer, user, stats, top, activity.items);
+
+    try std.Io.Dir.cwd().writeFile(io, .{
+        .sub_path = "README.md",
+        .data = doc.written(),
+    });
 }

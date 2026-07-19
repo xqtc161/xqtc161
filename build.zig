@@ -2,7 +2,7 @@ const std = @import("std");
 
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
-    const optimize = b.standardOptimizeOption(.{});
+    const optimize = b.standardOptimizeOption(.{ .preferred_optimize_mode = .ReleaseSmall });
 
     const graphql = b.dependency("graphql", .{ .target = target, .optimize = optimize });
 
@@ -18,6 +18,7 @@ pub fn build(b: *std.Build) void {
         }),
     });
     exe.root_module.addAnonymousImport("query.graphql", .{ .root_source_file = b.path("query.graphql") });
+    exe.root_module.addAnonymousImport("ascii.txt", .{ .root_source_file = b.path("ascii.txt") });
 
     b.installArtifact(exe);
 
