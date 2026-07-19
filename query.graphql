@@ -10,14 +10,14 @@ query($login: String!) {
     repositories (
       first: 100
       ownerAffiliations: OWNER
-      isFork false
-      oderBy: {field: PUSHED_AT, direction DESC }
+      isFork: false
+      orderBy: {field: PUSHED_AT, direction: DESC }
     ) {
       totalCount
       nodes {
         nameWithOwner
         stargazerCount
-        languages(first10, orderBy: { field: SIZE, direction: DESC }) {
+        languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name } }
         }
       }

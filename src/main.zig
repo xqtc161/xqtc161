@@ -11,30 +11,63 @@ pub const Stats = struct {
     contributed: u64,
 };
 
-const Lang = struct { name: []const u8, percent: u64 };
+const Lang = struct { name: []const u8, percent: f64 };
 
 const query = @embedFile("query.graphql");
 
+fn field(v: ?std.json.Value, key: []const u8) ?std.json.Value {
+    return switch (v orelse return null) {
+        .object => |o| o.get(key),
+        else => null,
+    };
+}
+
+fn items(v: ?std.json.Value) []std.json.Value {
+    return switch (v orelse return &.{}) {
+        .array => |a| a.items,
+        else => &.{},
+    };
+}
+
+fn u64Of(v: ?std.json.Value) u64 {
+    return switch (v orelse return 0) {
+        .integer => |i| if (i > 0) @intCast(i) else 0,
+        .float => |f| @intFromFloat(@max(f, 0)),
+        else => 0,
+    };
+}
+
+fn strOf(v: ?std.json.Value) []const u8 {
+    return switch (v orelse return "") {
+        .string => |s| s,
+        else => "",
+    };
+}
+
 pub fn main(init: std.process.Init) !void {
-    const allocator = init.gpa;
+    const gpa = init.gpa;
     const io = init.io;
+    const arena = init.arena.allocator();
 
     const github_token = init.environ_map.get("GITHUB_TOKEN") orelse return error.MissingToken;
-    const github_user = init.environ_map.get("GITHUB_USER") orelse return error.MissingUser;
-    _ = github_user; // autofix
+    const user = init.environ_map.get("GITHUB_USER") orelse return error.MissingUser;
 
-    const auth_header = try std.fmt.allocPrint(init.arena.allocator(), "Bearer {s}", .{github_token});
-    _ = auth_header; // autofix
+    const auth = try std.fmt.allocPrint(arena, "Bearer {s}", .{github_token});
+
+    const headers = [_]std.http.Header{
+        .{ .name = "User-Agent", .value = "readmegen" },
+        .{ .name = "Authorization", .value = auth },
+    };
 
     var client = try graphql.Client.init(
-        allocator,
+        gpa,
         io,
-        "https://api.github.com",
-        &.{},
+        "https://api.github.com/graphql",
+        &headers,
     );
     defer client.deinit();
 
-    var response = try client.execute(query, .{});
+    var response = try client.execute(query, .{ .login = user });
     defer response.deinit();
 
     if (response.errors.len > 0) {
