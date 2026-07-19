@@ -191,8 +191,16 @@ pub fn main(init: std.process.Init) !void {
     defer doc.deinit();
     try render(&doc.writer, user, stats, top, activity.items);
 
+    var quoted: std.Io.Writer.Allocating = .init(gpa);
+    defer quoted.deinit();
+    try quoted.writer.print("> [!CAUTION]\n", .{});
+
+    var doc_split = std.mem.splitScalar(u8, doc.written(), '\n');
+    while (doc_split.next()) |l| {
+        try quoted.writer.print("> {s}\n", .{l});
+    }
     try std.Io.Dir.cwd().writeFile(io, .{
         .sub_path = "README.md",
-        .data = doc.written(),
+        .data = quoted.written(),
     });
 }
