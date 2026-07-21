@@ -103,7 +103,10 @@ fn render(
         try w.writeByte('\n');
     }
 
-    try w.print("commits {d}  issues {d}  pull requests {d}  repos {d} contrib {d}\n", .{ stats.commits, stats.issues, stats.prs, stats.repos, stats.contributed });
+    try w.print(
+        "commits {d}  issues {d}  pull requests {d}  repos {d} contrib {d}\n",
+        .{ stats.commits, stats.issues, stats.prs, stats.repos, stats.contributed },
+    );
     try w.print("```\n", .{});
     if (gif_path) |p| try w.print("\n![]({s})\n", .{p});
 }
