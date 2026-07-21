@@ -15,34 +15,45 @@ const Lang = struct { name: []const u8, percent: f64 };
 
 const query = @embedFile("query.graphql");
 
-fn field(v: ?std.json.Value, key: []const u8) ?std.json.Value {
-    return switch (v orelse return null) {
-        .object => |o| o.get(key),
-        else => null,
-    };
-}
+const TotalCount = struct { totalCount: u64 };
 
-fn items(v: ?std.json.Value) []std.json.Value {
-    return switch (v orelse return &.{}) {
-        .array => |a| a.items,
-        else => &.{},
-    };
-}
+const LanguageNode = struct { name: []const u8 };
 
-fn u64Of(v: ?std.json.Value) u64 {
-    return switch (v orelse return 0) {
-        .integer => |i| if (i > 0) @intCast(i) else 0,
-        .float => |f| @intFromFloat(@max(f, 0)),
-        else => 0,
-    };
-}
+const LanguageEdge = struct {
+    size: u64,
+    node: LanguageNode,
+};
 
-fn strOf(v: ?std.json.Value) []const u8 {
-    return switch (v orelse return "") {
-        .string => |s| s,
-        else => "",
-    };
-}
+const Languages = struct {
+    edges: []const LanguageEdge,
+};
+
+const RepoNode = struct {
+    nameWithOwner: []const u8,
+    stargazerCount: u64,
+    languages: Languages,
+};
+
+const Repositories = struct {
+    totalCount: u64,
+    nodes: []const RepoNode,
+};
+
+const ContributionsCollection = struct {
+    totalCommitContributions: u64,
+    totalPullRequestContributions: u64,
+    totalIssueContributions: u64,
+    restrictedContributionsCount: u64,
+};
+
+const User = struct {
+    followers: TotalCount,
+    contributionsCollection: ContributionsCollection,
+    repositories: Repositories,
+    repositoriesContributedTo: TotalCount,
+};
+
+const Data = struct { user: User };
 
 const ascii = @embedFile("ascii.txt");
 const tagline = "meow :3";
@@ -120,7 +131,7 @@ pub fn main(init: std.process.Init) !void {
     );
     defer client.deinit();
 
-    var response = try client.execute(query, .{ .login = user });
+    var response = try client.executeTyped(Data, query, .{ .login = user });
     defer response.deinit();
 
     if (response.errors.len > 0) {
@@ -131,40 +142,37 @@ pub fn main(init: std.process.Init) !void {
     }
 
     const data = response.data orelse return error.NoData;
-    const user_node = field(data, "user") orelse return error.NoData;
-    const contrib = field(user_node, "contributionsCollection");
-    const repos = field(user_node, "repositories");
+    const user_node = data.user;
+    const contrib = user_node.contributionsCollection;
+    const repos = user_node.repositories;
 
     var stars: u64 = 0;
     var lang_bytes: std.StringHashMapUnmanaged(u64) = .empty;
     var activity: std.ArrayList([]const u8) = .empty;
 
-    for (items(field(repos, "nodes"))) |node| {
-        stars += u64Of(field(node, "stargazerCount"));
+    for (repos.nodes) |node| {
+        stars += node.stargazerCount;
 
-        for (items(field(field(node, "languages"), "edges"))) |edge| {
-            const name = strOf(field(field(edge, "node"), "name"));
-            if (name.len == 0) continue;
-            const gop = try lang_bytes.getOrPut(arena, name);
+        for (node.languages.edges) |edge| {
+            if (edge.node.name.len == 0) continue;
+            const gop = try lang_bytes.getOrPut(arena, edge.node.name);
             if (!gop.found_existing) gop.value_ptr.* = 0;
-            gop.value_ptr.* += u64Of(field(edge, "size"));
+            gop.value_ptr.* += edge.size;
         }
 
-        if (activity.items.len < 3) {
-            const repo = strOf(field(node, "nameWithOwner"));
-            if (repo.len > 0) try activity.append(arena, repo);
+        if (activity.items.len < 3 and node.nameWithOwner.len > 0) {
+            try activity.append(arena, node.nameWithOwner);
         }
     }
 
     const stats: Stats = .{
-        .followers = u64Of(field(field(user_node, "followers"), "totalCount")),
+        .followers = user_node.followers.totalCount,
         .stars = stars,
-        .commits = u64Of(field(contrib, "totalCommitContributions")) +
-            u64Of(field(contrib, "restrictedContributionsCount")),
-        .prs = u64Of(field(contrib, "totalPullRequestContributions")),
-        .issues = u64Of(field(contrib, "totalIssueContributions")),
-        .repos = u64Of(field(repos, "totalCount")),
-        .contributed = u64Of(field(field(user_node, "repositoriesContributedTo"), "totalCount")),
+        .commits = contrib.totalCommitContributions + contrib.restrictedContributionsCount,
+        .prs = contrib.totalPullRequestContributions,
+        .issues = contrib.totalIssueContributions,
+        .repos = repos.totalCount,
+        .contributed = user_node.repositoriesContributedTo.totalCount,
     };
 
     var total: u64 = 0;

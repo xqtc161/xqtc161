@@ -5,8 +5,8 @@
     .minimum_zig_version = "0.16.0",
     .dependencies = .{
         .graphql = .{
-            .url = "git+https://git.sr.ht/~xqtc/graphql-zig?ref=trunk#9991c87ee64f5a1a434bcef76719e4c380b33598",
-            .hash = "graphql-0.1.0-Sr_BkGkQAACu9n8nRjPIQJ2JFI0t0ZauWoKMu2bW96xG",
+            .url = "git+https://git.sr.ht/~xqtc/graphql-zig?ref=trunk#3cd0ca938b69a76daf55f76c727c04ef81290f27",
+            .hash = "graphql-0.1.0-Sr_BkFkgAAD-a98ZX0F8MsITmU9dBt6w69DMlrmlmaUZ",
         },
     },
     .paths = .{
