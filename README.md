@@ -20,8 +20,8 @@
 > 
 > 47 followers 4 stars
 > 
-> Zig          ██████████     82.9%
-> Nix          █▌             12.3%
+> Zig          █████████▉     82.7%
+> Nix          █▌             12.5%
 > Rust         ▍               3.4%
 > CSS          ▏               1.4%
 > 
@@ -32,7 +32,7 @@
 > xqtc161/xqtc161
 > xqtc161/graphql-zig
 > 
-> commits 154  issues 3  pull requests 7  repos 7 contrib 3
+> commits 159  issues 3  pull requests 7  repos 7 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
