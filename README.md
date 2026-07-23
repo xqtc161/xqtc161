@@ -20,19 +20,19 @@
 > 
 > 47 followers 4 stars
 > 
-> Zig          █████████▊     81.5%
-> Nix          █▋             13.3%
-> Rust         ▍               3.6%
-> CSS          ▏               1.5%
+> Zig          ██████████     82.9%
+> Nix          █▌             12.3%
+> Rust         ▍               3.4%
+> CSS          ▏               1.4%
 > 
 > 
 > recent activity
 > 
+> xqtc161/kirikae
 > xqtc161/xqtc161
 > xqtc161/graphql-zig
-> xqtc161/kirikae
 > 
-> commits 146  issues 3  pull requests 7  repos 7 contrib 3
+> commits 154  issues 3  pull requests 7  repos 7 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
