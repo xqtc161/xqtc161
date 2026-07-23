@@ -28,11 +28,11 @@
 > 
 > recent activity
 > 
-> xqtc161/xqtc161
 > xqtc161/kirikae
+> xqtc161/xqtc161
 > xqtc161/graphql-zig
 > 
-> commits 159  issues 3  pull requests 7  repos 7 contrib 3
+> commits 160  issues 3  pull requests 7  repos 7 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
