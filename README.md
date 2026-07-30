@@ -28,8 +28,8 @@
 > 
 > recent activity
 > 
-> xqtc161/logitune-flake
 > xqtc161/xqtc161
+> xqtc161/logitune-flake
 > xqtc161/kirikae
 > 
 > commits 162  issues 3  pull requests 8  repos 7 contrib 3
