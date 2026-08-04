@@ -24,15 +24,16 @@
 > Nix          █▌             12.5%
 > Rust         ▍               3.4%
 > CSS          ▏               1.4%
+> Shell                        0.0%
 > 
 > 
 > recent activity
 > 
+> xqtc161/kirikae
 > xqtc161/xqtc161
 > xqtc161/logitune-flake
-> xqtc161/kirikae
 > 
-> commits 162  issues 3  pull requests 8  repos 7 contrib 3
+> commits 163  issues 3  pull requests 8  repos 7 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
