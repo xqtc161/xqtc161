@@ -20,20 +20,20 @@
 > 
 > 46 followers 4 stars
 > 
-> Zig          █████████▉     82.7%
-> Nix          █▌             12.5%
-> Rust         ▍               3.4%
-> CSS          ▏               1.4%
+> Zig          █████████▉     81.9%
+> Nix          █▋             13.1%
+> Rust         ▍               3.5%
+> CSS          ▏               1.5%
 > Shell                        0.0%
 > 
 > 
 > recent activity
 > 
-> xqtc161/xqtc161
 > xqtc161/kirikae
+> xqtc161/xqtc161
 > xqtc161/logitune-flake
 > 
-> commits 166  issues 3  pull requests 8  repos 7 contrib 3
+> commits 174  issues 3  pull requests 8  repos 7 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
