@@ -29,11 +29,11 @@
 > 
 > recent activity
 > 
-> xqtc161/xqtc161
 > xqtc161/kirikae
+> xqtc161/xqtc161
 > xqtc161/logitune-flake
 > 
-> commits 198  issues 3  pull requests 8  repos 7 contrib 3
+> commits 199  issues 3  pull requests 8  repos 7 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
