@@ -29,9 +29,9 @@
 > 
 > recent activity
 > 
+> xqtc161/xqtc161
 > xqtc161/poweroff_guard
 > xqtc161/graphql-zig
-> xqtc161/kirikae
 > 
 > commits 219  issues 3  pull requests 8  repos 8 contrib 3
 > ```
