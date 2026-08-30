@@ -18,22 +18,22 @@
 > 
 > @xqtc161
 > 
-> 46 followers 8 stars
+> 46 followers 9 stars
 > 
-> Zig          █████████▊     81.1%
-> Nix          █▊             14.5%
-> Rust         ▍               3.1%
-> CSS          ▏               1.3%
+> Zig          █████████▋     80.4%
+> Nix          █▉             15.5%
+> Rust         ▍               2.9%
+> CSS          ▏               1.2%
 > Shell                        0.0%
 > 
 > 
 > recent activity
 > 
+> xqtc161/hako
 > xqtc161/xqtc161
 > xqtc161/poweroff_guard
-> xqtc161/graphql-zig
 > 
-> commits 228  issues 3  pull requests 8  repos 8 contrib 3
+> commits 230  issues 3  pull requests 8  repos 9 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
