@@ -20,10 +20,10 @@
 > 
 > 46 followers 9 stars
 > 
-> Zig          █████████▋     80.4%
-> Nix          █▉             15.5%
-> Rust         ▍               2.9%
-> CSS          ▏               1.2%
+> Zig          █████████▊     81.4%
+> Nix          █▊             14.7%
+> Rust         ▍               2.7%
+> CSS          ▏               1.1%
 > Shell                        0.0%
 > 
 > 
@@ -33,7 +33,7 @@
 > xqtc161/xqtc161
 > xqtc161/poweroff_guard
 > 
-> commits 230  issues 3  pull requests 8  repos 9 contrib 3
+> commits 232  issues 3  pull requests 8  repos 9 contrib 3
 > ```
 > 
 > ![](./cat-kitten.gif)
