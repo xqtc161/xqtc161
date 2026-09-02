@@ -29,27 +29,27 @@ const Languages = struct {
     edges: []const LanguageEdge,
 };
 
-const RepoNode = struct {
+const LanguageRepository = struct {
     nameWithOwner: []const u8,
-    stargazerCount: u64 = 0,
     languages: Languages,
 };
 
-const Repositories = struct {
-    totalCount: u64,
-    nodes: []const RepoNode,
-};
+const OwnedRepository = struct { stargazerCount: u64 };
 
-const RepositoryRef = struct { nameWithOwner: []const u8 };
+const OwnedRepositories = struct {
+    totalCount: u64,
+    nodes: []const OwnedRepository,
+};
 
 const Contribution = struct { occurredAt: []const u8 };
 
 const ContributionConnection = struct {
+    totalCount: u64,
     nodes: []const Contribution,
 };
 
 const CommitContributionsByRepository = struct {
-    repository: RepositoryRef,
+    repository: LanguageRepository,
     contributions: ContributionConnection,
 };
 
@@ -64,30 +64,30 @@ const ContributionsCollection = struct {
 const User = struct {
     followers: TotalCount,
     contributionsCollection: ContributionsCollection,
-    repositories: Repositories,
-    repositoriesContributedTo: Repositories,
+    repositories: OwnedRepositories,
+    repositoriesContributedTo: TotalCount,
 };
 
 const Data = struct { user: User };
 
-fn addRepository(
+fn addWeightedLanguages(
     arena: std.mem.Allocator,
-    node: RepoNode,
-    seen_repos: *std.StringHashMapUnmanaged(void),
-    lang_bytes: *std.StringHashMapUnmanaged(u64),
+    node: LanguageRepository,
+    weight: f64,
+    lang_weights: *std.StringHashMapUnmanaged(f64),
 ) !void {
-    const repo = node.nameWithOwner;
-    if (repo.len == 0) return;
-
-    const seen = try seen_repos.getOrPut(arena, repo);
-    if (seen.found_existing) return;
+    var total_bytes: u64 = 0;
+    for (node.languages.edges) |edge| total_bytes += edge.size;
+    if (total_bytes == 0) return;
 
     for (node.languages.edges) |edge| {
         const name = edge.node.name;
         if (name.len == 0) continue;
-        const language = try lang_bytes.getOrPut(arena, name);
-        if (!language.found_existing) language.value_ptr.* = 0;
-        language.value_ptr.* += edge.size;
+        const language = try lang_weights.getOrPut(arena, name);
+        if (!language.found_existing) language.value_ptr.* = 0.0;
+        const language_bytes: f64 = @floatFromInt(edge.size);
+        const repo_bytes: f64 = @floatFromInt(total_bytes);
+        language.value_ptr.* += weight * language_bytes / repo_bytes;
     }
 }
 
@@ -187,21 +187,17 @@ pub fn main(init: std.process.Init) !void {
     const contributed_repos = user_node.repositoriesContributedTo;
 
     var stars: u64 = 0;
-    var lang_bytes: std.StringHashMapUnmanaged(u64) = .empty;
-    var seen_repos: std.StringHashMapUnmanaged(void) = .empty;
+    var lang_weights: std.StringHashMapUnmanaged(f64) = .empty;
     var activity: std.ArrayList(Activity) = .empty;
 
     for (repos.nodes) |node| {
         stars += node.stargazerCount;
-        try addRepository(arena, node, &seen_repos, &lang_bytes);
-    }
-
-    for (contributed_repos.nodes) |node| {
-        try addRepository(arena, node, &seen_repos, &lang_bytes);
     }
 
     for (contrib.commitContributionsByRepository) |group| {
         if (group.repository.nameWithOwner.len == 0 or group.contributions.nodes.len == 0) continue;
+        const commit_weight: f64 = @floatFromInt(group.contributions.totalCount);
+        try addWeightedLanguages(arena, group.repository, commit_weight, &lang_weights);
         try activity.append(arena, .{
             .repo = group.repository.nameWithOwner,
             .occurred_at = group.contributions.nodes[0].occurredAt,
@@ -231,16 +227,15 @@ pub fn main(init: std.process.Init) !void {
         .contributed = contributed_repos.totalCount,
     };
 
-    var total: u64 = 0;
-    var vit = lang_bytes.valueIterator();
+    var total: f64 = 0.0;
+    var vit = lang_weights.valueIterator();
     while (vit.next()) |v| total += v.*;
-    const denom: f64 = @floatFromInt(@max(total, 1));
+    const denom = @max(total, 1.0);
 
     var langs: std.ArrayList(Lang) = .empty;
-    var eit = lang_bytes.iterator();
+    var eit = lang_weights.iterator();
     while (eit.next()) |e| {
-        const bytes: f64 = @floatFromInt(e.value_ptr.*);
-        try langs.append(arena, .{ .name = e.key_ptr.*, .percent = bytes / denom * 100.0 });
+        try langs.append(arena, .{ .name = e.key_ptr.*, .percent = e.value_ptr.* / denom * 100.0 });
     }
 
     std.mem.sort(Lang, langs.items, {}, struct {
