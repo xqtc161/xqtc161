@@ -6,6 +6,15 @@ query($login: String!) {
       totalPullRequestContributions
       totalIssueContributions
       restrictedContributionsCount
+      commitContributionsByRepository(maxRepositories: 100) {
+        repository { nameWithOwner }
+        contributions(
+          first: 1
+          orderBy: {field: OCCURRED_AT, direction: DESC}
+        ) {
+          nodes { occurredAt }
+        }
+      }
     }
     repositories (
       first: 100
@@ -16,7 +25,6 @@ query($login: String!) {
       totalCount
       nodes {
         nameWithOwner
-        pushedAt
         stargazerCount
         languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name } }
@@ -27,12 +35,10 @@ query($login: String!) {
       first: 100
       contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]
       includeUserRepositories: false
-      orderBy: {field: PUSHED_AT, direction: DESC}
     ) {
       totalCount
       nodes {
         nameWithOwner
-        pushedAt
         languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name } }
         }

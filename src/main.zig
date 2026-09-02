@@ -12,7 +12,7 @@ pub const Stats = struct {
 };
 
 const Lang = struct { name: []const u8, percent: f64 };
-const Activity = struct { repo: []const u8, pushed_at: []const u8 };
+const Activity = struct { repo: []const u8, occurred_at: []const u8 };
 
 const query = @embedFile("query.graphql");
 
@@ -31,7 +31,6 @@ const Languages = struct {
 
 const RepoNode = struct {
     nameWithOwner: []const u8,
-    pushedAt: ?[]const u8,
     stargazerCount: u64 = 0,
     languages: Languages,
 };
@@ -41,11 +40,25 @@ const Repositories = struct {
     nodes: []const RepoNode,
 };
 
+const RepositoryRef = struct { nameWithOwner: []const u8 };
+
+const Contribution = struct { occurredAt: []const u8 };
+
+const ContributionConnection = struct {
+    nodes: []const Contribution,
+};
+
+const CommitContributionsByRepository = struct {
+    repository: RepositoryRef,
+    contributions: ContributionConnection,
+};
+
 const ContributionsCollection = struct {
     totalCommitContributions: u64,
     totalPullRequestContributions: u64,
     totalIssueContributions: u64,
     restrictedContributionsCount: u64,
+    commitContributionsByRepository: []const CommitContributionsByRepository,
 };
 
 const User = struct {
@@ -62,7 +75,6 @@ fn addRepository(
     node: RepoNode,
     seen_repos: *std.StringHashMapUnmanaged(void),
     lang_bytes: *std.StringHashMapUnmanaged(u64),
-    activity: *std.ArrayList(Activity),
 ) !void {
     const repo = node.nameWithOwner;
     if (repo.len == 0) return;
@@ -77,11 +89,6 @@ fn addRepository(
         if (!language.found_existing) language.value_ptr.* = 0;
         language.value_ptr.* += edge.size;
     }
-
-    try activity.append(arena, .{
-        .repo = repo,
-        .pushed_at = node.pushedAt orelse "",
-    });
 }
 
 const ascii = @embedFile("ascii.txt");
@@ -186,16 +193,24 @@ pub fn main(init: std.process.Init) !void {
 
     for (repos.nodes) |node| {
         stars += node.stargazerCount;
-        try addRepository(arena, node, &seen_repos, &lang_bytes, &activity);
+        try addRepository(arena, node, &seen_repos, &lang_bytes);
     }
 
     for (contributed_repos.nodes) |node| {
-        try addRepository(arena, node, &seen_repos, &lang_bytes, &activity);
+        try addRepository(arena, node, &seen_repos, &lang_bytes);
+    }
+
+    for (contrib.commitContributionsByRepository) |group| {
+        if (group.repository.nameWithOwner.len == 0 or group.contributions.nodes.len == 0) continue;
+        try activity.append(arena, .{
+            .repo = group.repository.nameWithOwner,
+            .occurred_at = group.contributions.nodes[0].occurredAt,
+        });
     }
 
     std.mem.sort(Activity, activity.items, {}, struct {
         fn newestFirst(_: void, a: Activity, b: Activity) bool {
-            const date_order = std.mem.order(u8, a.pushed_at, b.pushed_at);
+            const date_order = std.mem.order(u8, a.occurred_at, b.occurred_at);
             if (date_order != .eq) return date_order == .gt;
             return std.mem.lessThan(u8, a.repo, b.repo);
         }
