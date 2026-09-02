@@ -20,18 +20,19 @@
 > 
 > 46 followers 9 stars
 > 
-> Zig          █████████▉     81.8%
-> Nix          █▊             14.5%
-> Rust         ▍               2.6%
-> CSS          ▏               1.1%
-> Shell                        0.0%
+> Nix          ███████████    91.3%
+> Go           ▌               3.8%
+> Shell        ▎               2.0%
+> Python       ▎               1.8%
+> Rust                         0.3%
+> JavaScript                   0.2%
 > 
 > 
 > recent activity
 > 
 > xqtc161/xqtc161
-> xqtc161/zonsite
-> xqtc161/hako
+> NixOS/nixpkgs
+> bpg/terraform-provider-proxmox
 > 
 > commits 253  issues 3  pull requests 8  repos 8 contrib 4
 > ```
