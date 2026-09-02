@@ -12,6 +12,7 @@ pub const Stats = struct {
 };
 
 const Lang = struct { name: []const u8, percent: f64 };
+const Activity = struct { repo: []const u8, pushed_at: []const u8 };
 
 const query = @embedFile("query.graphql");
 
@@ -30,7 +31,8 @@ const Languages = struct {
 
 const RepoNode = struct {
     nameWithOwner: []const u8,
-    stargazerCount: u64,
+    pushedAt: ?[]const u8,
+    stargazerCount: u64 = 0,
     languages: Languages,
 };
 
@@ -50,10 +52,37 @@ const User = struct {
     followers: TotalCount,
     contributionsCollection: ContributionsCollection,
     repositories: Repositories,
-    repositoriesContributedTo: TotalCount,
+    repositoriesContributedTo: Repositories,
 };
 
 const Data = struct { user: User };
+
+fn addRepository(
+    arena: std.mem.Allocator,
+    node: RepoNode,
+    seen_repos: *std.StringHashMapUnmanaged(void),
+    lang_bytes: *std.StringHashMapUnmanaged(u64),
+    activity: *std.ArrayList(Activity),
+) !void {
+    const repo = node.nameWithOwner;
+    if (repo.len == 0) return;
+
+    const seen = try seen_repos.getOrPut(arena, repo);
+    if (seen.found_existing) return;
+
+    for (node.languages.edges) |edge| {
+        const name = edge.node.name;
+        if (name.len == 0) continue;
+        const language = try lang_bytes.getOrPut(arena, name);
+        if (!language.found_existing) language.value_ptr.* = 0;
+        language.value_ptr.* += edge.size;
+    }
+
+    try activity.append(arena, .{
+        .repo = repo,
+        .pushed_at = node.pushedAt orelse "",
+    });
+}
 
 const ascii = @embedFile("ascii.txt");
 const tagline = "meow :3";
@@ -148,24 +177,33 @@ pub fn main(init: std.process.Init) !void {
     const user_node = data.user;
     const contrib = user_node.contributionsCollection;
     const repos = user_node.repositories;
+    const contributed_repos = user_node.repositoriesContributedTo;
 
     var stars: u64 = 0;
     var lang_bytes: std.StringHashMapUnmanaged(u64) = .empty;
-    var activity: std.ArrayList([]const u8) = .empty;
+    var seen_repos: std.StringHashMapUnmanaged(void) = .empty;
+    var activity: std.ArrayList(Activity) = .empty;
 
     for (repos.nodes) |node| {
         stars += node.stargazerCount;
+        try addRepository(arena, node, &seen_repos, &lang_bytes, &activity);
+    }
 
-        for (node.languages.edges) |edge| {
-            if (edge.node.name.len == 0) continue;
-            const gop = try lang_bytes.getOrPut(arena, edge.node.name);
-            if (!gop.found_existing) gop.value_ptr.* = 0;
-            gop.value_ptr.* += edge.size;
-        }
+    for (contributed_repos.nodes) |node| {
+        try addRepository(arena, node, &seen_repos, &lang_bytes, &activity);
+    }
 
-        if (activity.items.len < 3 and node.nameWithOwner.len > 0) {
-            try activity.append(arena, node.nameWithOwner);
+    std.mem.sort(Activity, activity.items, {}, struct {
+        fn newestFirst(_: void, a: Activity, b: Activity) bool {
+            const date_order = std.mem.order(u8, a.pushed_at, b.pushed_at);
+            if (date_order != .eq) return date_order == .gt;
+            return std.mem.lessThan(u8, a.repo, b.repo);
         }
+    }.newestFirst);
+
+    var recent_activity: std.ArrayList([]const u8) = .empty;
+    for (activity.items[0..@min(3, activity.items.len)]) |entry| {
+        try recent_activity.append(arena, entry.repo);
     }
 
     const stats: Stats = .{
@@ -175,7 +213,7 @@ pub fn main(init: std.process.Init) !void {
         .prs = contrib.totalPullRequestContributions,
         .issues = contrib.totalIssueContributions,
         .repos = repos.totalCount,
-        .contributed = user_node.repositoriesContributedTo.totalCount,
+        .contributed = contributed_repos.totalCount,
     };
 
     var total: u64 = 0;
@@ -200,7 +238,7 @@ pub fn main(init: std.process.Init) !void {
 
     var doc: std.Io.Writer.Allocating = .init(gpa);
     defer doc.deinit();
-    try render(&doc.writer, user, stats, top, activity.items);
+    try render(&doc.writer, user, stats, top, recent_activity.items);
 
     var quoted: std.Io.Writer.Allocating = .init(gpa);
     defer quoted.deinit();

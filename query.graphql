@@ -16,6 +16,7 @@ query($login: String!) {
       totalCount
       nodes {
         nameWithOwner
+        pushedAt
         stargazerCount
         languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name } }
@@ -23,10 +24,19 @@ query($login: String!) {
       }
     }
     repositoriesContributedTo(
-      first: 1
+      first: 100
       contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]
+      includeUserRepositories: false
+      orderBy: {field: PUSHED_AT, direction: DESC}
     ) {
       totalCount
+      nodes {
+        nameWithOwner
+        pushedAt
+        languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+          edges { size node { name } }
+        }
+      }
     }
   }
 }
