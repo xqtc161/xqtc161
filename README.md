@@ -18,7 +18,7 @@
 > 
 > @xqtc161
 > 
-> 46 followers 9 stars
+> 47 followers 9 stars
 > 
 > Zig          ███████▌       62.9%
 > Nix          ██▎            18.9%
