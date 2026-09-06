@@ -20,9 +20,9 @@
 > 
 > 47 followers 9 stars
 > 
-> Zig          ███████▌       62.9%
+> Zig          ███████▋       63.1%
 > Nix          ██▎            18.9%
-> Go           ██             16.5%
+> Go           ██             16.4%
 > Just         ▏               0.8%
 > CSS          ▏               0.7%
 > Shell                        0.1%
@@ -34,7 +34,7 @@
 > xqtc161/xqtc161
 > xqtc161/zonsite
 > 
-> commits 263  issues 3  pull requests 8  repos 8 contrib 4
+> commits 264  issues 3  pull requests 8  repos 8 contrib 4
 > ```
 > 
 > ![](./cat-kitten.gif)
