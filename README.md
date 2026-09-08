@@ -20,10 +20,10 @@
 > 
 > 47 followers 9 stars
 > 
-> Zig          ███████▌       62.9%
-> Nix          ██▎            18.8%
-> Go           ██             16.7%
-> Just         ▏               0.8%
+> Zig          ███████▋       63.7%
+> Nix          ██▎            18.5%
+> Go           ██             16.2%
+> Just         ▏               0.7%
 > CSS          ▏               0.7%
 > Shell                        0.1%
 > 
@@ -34,7 +34,7 @@
 > bpg/terraform-provider-proxmox
 > xqtc161/xqtc161
 > 
-> commits 273  issues 3  pull requests 8  repos 8 contrib 4
+> commits 280  issues 3  pull requests 8  repos 8 contrib 4
 > ```
 > 
 > ![](./cat-kitten.gif)
