@@ -20,8 +20,8 @@
 > 
 > 47 followers 9 stars
 > 
-> Zig          ███████▋       64.0%
-> Nix          ██▎            18.4%
+> Zig          ███████▋       63.7%
+> Nix          ██▎            18.7%
 > Go           █▉             16.0%
 > CSS          ▏               0.7%
 > Just         ▏               0.7%
@@ -30,11 +30,11 @@
 > 
 > recent activity
 > 
+> NixOS/nixpkgs
 > xqtc161/kirikae
 > xqtc161/zonsite
-> xqtc161/hako
 > 
-> commits 289  issues 3  pull requests 9  repos 8 contrib 4
+> commits 290  issues 3  pull requests 9  repos 8 contrib 4
 > ```
 > 
 > ![](./cat-kitten.gif)
