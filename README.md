@@ -18,7 +18,7 @@
 > 
 > @xqtc161
 > 
-> 47 followers 9 stars
+> 47 followers 7 stars
 > 
 > Zig          ███████▋       63.7%
 > Nix          ██▎            18.7%
@@ -34,7 +34,7 @@
 > xqtc161/kirikae
 > xqtc161/zonsite
 > 
-> commits 290  issues 3  pull requests 9  repos 8 contrib 4
+> commits 290  issues 3  pull requests 9  repos 7 contrib 4
 > ```
 > 
 > ![](./cat-kitten.gif)
