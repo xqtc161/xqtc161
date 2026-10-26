@@ -34,7 +34,7 @@
 > NixOS/nixpkgs
 > xqtc161/zonsite
 > 
-> commits 292  issues 3  pull requests 9  repos 7 contrib 4
+> commits 292  issues 3  pull requests 10  repos 7 contrib 4
 > ```
 > 
 > ![](./cat-kitten.gif)
