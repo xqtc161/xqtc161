@@ -20,9 +20,9 @@
 > 
 > 47 followers 7 stars
 > 
-> Zig          ███████        58.7%
-> Go           ██▊            22.5%
-> Nix          ██▏            17.4%
+> Zig          ███████        58.5%
+> Go           ██▊            22.4%
+> Nix          ██▏            17.7%
 > CSS          ▏               0.7%
 > Just         ▏               0.6%
 > Shell                        0.1%
@@ -30,11 +30,11 @@
 > 
 > recent activity
 > 
-> invers-gmbh/terraform-provider-pvescheduler
 > NixOS/nixpkgs
+> invers-gmbh/terraform-provider-pvescheduler
 > xqtc161/kirikae
 > 
-> commits 315  issues 3  pull requests 11  repos 7 contrib 4
+> commits 316  issues 3  pull requests 11  repos 7 contrib 4
 > ```
 > 
 > ![](./cat-kitten.gif)
