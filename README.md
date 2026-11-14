@@ -34,7 +34,7 @@
 > NixOS/nixpkgs
 > xqtc161/kirikae
 > 
-> commits 320  issues 3  pull requests 11  repos 7 contrib 4
+> commits 320  issues 3  pull requests 12  repos 7 contrib 4
 > ```
 > 
 > ![](./cat-kitten.gif)
